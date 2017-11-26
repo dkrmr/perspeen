@@ -58,6 +58,11 @@
   :type 'boolean
   :group 'perspeen)
 
+(defcustom perspeen-change-root-dir-when-create t
+  "Changing root directory when creating workspace."
+  :type 'boolean
+  :group 'perspeen)
+
 (defvar perspeen-ws-before-switch-hook nil
   "Hook run before switch workspace.")
 
@@ -145,6 +150,8 @@
   "Create a new workspace."
   (interactive)
   (perspeen-new-ws-internal)
+  (when perspeen-change-root-dir-when-create
+    (perspeen-change-root-dir))
   (perspeen-update-mode-string))
 
 (defun perspeen-delete-ws ()
